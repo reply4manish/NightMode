@@ -62,25 +62,28 @@ public class NightService extends Service {
         if(r==0 && g==0 &&b==0  && a==0) //all are 0 probably not loaded so load from mPrefs
         {
             mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-            r = mPrefs.getInt("red",0);
-            g = mPrefs.getInt("green",0);
-            b = mPrefs.getInt("blue",0);
-            a = mPrefs.getInt("alpha",0);
+            r = mPrefs.getInt("red",27);
+            g = mPrefs.getInt("green",45);
+            b = mPrefs.getInt("blue",53);
+            a = mPrefs.getInt("alpha",46);
 
             Log.e("service",r+"");
         }
         STATE = ACTIVE;
         mView = new LinearLayout(this);
         mView.setBackgroundColor(getColor());
-        WindowManager.LayoutParams params = new WindowManager.LayoutParams(
+
+        WindowManager windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+
+        WindowManager.LayoutParams params = new  WindowManager.LayoutParams(
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
-                0 | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 PixelFormat.TRANSLUCENT);
-        WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
+        //WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
         Log.e("asd",r+"");
-        wm.addView(mView, params);
+        windowManager.addView(mView, params);
 
         createNotification();
     }
@@ -116,10 +119,10 @@ public class NightService extends Service {
         if(NOTI_STATE==INACTIVE)
         {
             int id=100;
-            NotificationCompat.Builder notification = new NotificationCompat.Builder(getApplicationContext());
+            NotificationCompat.Builder notification = new NotificationCompat.Builder(getApplicationContext(), "100");
             notification.setContentTitle(getResources().getString(R.string.app_name));
             notification.setContentText(getResources().getString(R.string.app));
-            notification.setSmallIcon(R.drawable.logo_noti);
+            notification.setSmallIcon(R.drawable.logo_noti1);
             notification.setAutoCancel(true)
                         .setOngoing(true);
             notification.setPriority(NotificationCompat.PRIORITY_MAX);

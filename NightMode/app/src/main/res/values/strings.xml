@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Night Mode</string>
+    <string name="app_name">Murk</string>
     <string name="start">Start</string>
     <string name="red">Red</string>
     <string name="blue">Blue</string>
@@ -12,7 +12,7 @@
     <string name="brightness_desc">Set minimum brightness possible when service is running</string>
     <string name="notification">Show Notification</string>
     <string name="notification_desc">Show notification when service is running</string>
-    <string name="dev_name">By Sarbajit Saha</string>
+    <string name="dev_name">filmstaden</string>
     <string name="permission_denied">Permission denied. This app can\'t work without that permission. Please enable it from Settings. The app will exit now</string>
     <string name="permission_granted">Permission granted!</string>
 </resources>
